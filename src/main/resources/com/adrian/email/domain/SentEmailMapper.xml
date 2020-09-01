@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.adrian.email.domain.SentEmailMapper">
+    <insert id="insertSpendgridEmail">
+        insert into spendgrid_emails (spendgrid_UUID,
+        spendgrid_id,
+        sender,
+        recipient,
+        subject,
+        email_body)
+        values (#{spendgrid_UUID},
+        #{email.id},
+        #{email.sender},
+        #{email.recipient},
+        #{email.subject},
+        #{email.body})
+    </insert>
+
+    <insert id="insertSnailgunEmail">
+        insert into snailgun_emails (snailgun_UUID,
+        snailgun_id,
+        to_email,
+        to_name,
+        from_email,
+        from_name,
+        subject,
+        email_body,
+        status,
+        snailgun_created)
+        values (#{snailgun_UUID},
+        #{email.id},
+        #{email.to_email},
+        #{email.to_name},
+        #{email.from_email},
+        #{email.from_name},
+        #{email.subject},
+        #{email.body},
+        CAST(#{email.status} as status),
+        #{email.created_at})
+    </insert>
+
+    <update id="updateSnailgunEmail">
+        update snailgun_emails
+        set to_email = #{email.to_email},
+        to_name = #{email.to_name},
+        from_email = #{email.from_name},
+        from_name =  #{email.from_name},
+        subject = #{email.subject},
+        email_body = #{email.body},
+        status = CAST(#{email.status} as status),
+        snailgun_created = #{email.created_at}
+        where snailgun_id = #{email.id}
+    </update>
+</mapper>

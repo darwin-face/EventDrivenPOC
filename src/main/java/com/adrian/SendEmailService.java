@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
 
-@SpringBootApplication (exclude = SecurityAutoConfiguration.class)
-public class EventDrivenPOC {
+@SpringBootApplication (exclude = SecurityAutoConfiguration.class, scanBasePackages = { "com.adrian" })
+public class SendEmailService {
 
     public static void main(String[] args) {
-        SpringApplication.run(EventDrivenPOC.class, args);
+        SpringApplication.run(SendEmailService.class, args);
     }
 }
