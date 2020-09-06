@@ -1,1 +1,5 @@
-CREATE DATABASE task_management;
+CREATE DATABASE eventdrivenpoc;
+
+Create table words (
+    word varchar
+);
